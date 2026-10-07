@@ -1,0 +1,55 @@
+<h1>Quản lý sản phẩm sách</h1>
+
+<h2>Thêm sách mới</h2>
+<form action="/books" method="POST">
+    <div class="form-group">
+        <label>Mã sản phẩm (Bắt buộc bắt đầu bằng 241):</label><br>
+        <input type="text" name="productCode" placeholder="241BOOK01" required>
+    </div>
+    <div class="form-group">
+        <label>Tên sách:</label><br>
+        <input type="text" name="name" placeholder="Lập trình Cloud" required>
+    </div>
+    <div class="form-group">
+        <label>Giá trước thuế (VNĐ):</label><br>
+        <input type="number" name="priceBeforeTax" placeholder="100000" required>
+    </div>
+    <button type="submit">Thêm vào Database WRITE</button>
+</form>
+
+<hr>
+
+<h2>Danh sách sách (Đọc từ Database READ)</h2>
+<table>
+    <thead>
+        <tr>
+            <th>Mã sản phẩm</th>
+            <th>Tên sách</th>
+            <th>Giá trước thuế</th>
+            <th>Thuế VAT</th>
+            <th>Giá sau thuế</th>
+        </tr>
+    </thead>
+    <tbody>
+        {{#each books}}
+        <tr>
+            <td>{{productCode}}</td>
+            <td>{{name}}</td>
+            <td>{{priceBeforeTax}}</td>
+            <td>{{vat}}%</td>
+            <td>{{priceAfterTax}}</td>
+        </tr>
+        {{else}}
+        <tr>
+            <td colspan="5">Chưa có dữ liệu sách trong database.</td>
+        </tr>
+        {{/each}}
+    </tbody>
+</table>
+
+<footer>
+    <hr>
+    <p>Sinh viên thực hiện: {{fullName}}</p>
+    <p>Mã số sinh viên: {{mssv}}</p>
+    <p>Tỷ lệ VAT áp dụng: {{vat}}%</p>
+</footer>
